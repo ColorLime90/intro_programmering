@@ -22,5 +22,9 @@ while checkjackpot == False:
         antalförluster = antalförluster + 1
 if antalkast == 1:
     print("Du fick en jackpot på första försöket! Imponerande...")
+elif antalkast > 1 and antalvinster == 1:
+    print("Du behövde", antalkast, "kasttillfällen för att få en jackpot, därav ett kast var en vanlig vinst...")
+elif antalkast > 1 and antalvinster == 0:
+    print("Du behövde", antalkast, "kasttillfällen för att få en jackpot. Innan dess fick du inga vanliga vinster...")
 else:    
-    print("Du behövde", antalkast, "kasttillfällen för att få en jackpot...")
+    print("Du behövde", antalkast, "kasttillfällen för att få en jackpot, därav", antalvinster, "av kasten blev vanliga vinster...")
