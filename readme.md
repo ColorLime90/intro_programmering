@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+24-09-17
+Sjunde lektionen, fortsatte med fibonacci.
+
 24-09-10
 Sjätte lektionen, fortsatte med fibonacci talföljd.
 
