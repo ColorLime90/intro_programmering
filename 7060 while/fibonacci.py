@@ -1,7 +1,7 @@
 A = 1
 B = 1
 N = 1
-antal = input("Ange antalet tal i Fibonacci talföljden att räkna ut")
+antal = int(input("Ange antalet tal i Fibonacci talföljden som ska räknas ut: "))
 print("Räknar ut", antal, "tal")
 print("Tal nummer", str(N) + ":", A)
 N = N + 1
