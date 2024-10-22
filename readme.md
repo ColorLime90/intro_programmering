@@ -1,6 +1,12 @@
 Elias Berntsson Loggbok
 =======================
 
+2024-10-22
+Läste in mig på def och for
+
+24-10-07
+woohoo
+
 24-09-17
 Sjunde lektionen, fortsatte med fibonacci.
 
