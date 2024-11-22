@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2024-11-18
+läst lite olika delar och experimenterat 
+
 2024-10-22
 Läste in mig på def och for
 

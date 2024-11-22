@@ -1,4 +1,41 @@
 
+
+def a():
+    print("b")
+
+def c():
+    return("d")
+
+def e(f):
+    return f * f
+
+def i(j):
+    print("a", j)
+
+def l(m):
+    return"m" + m
+
+def o(p):
+    return p + 2
+
+a()
+
+g = c()
+print(g)
+
+print(e(3))
+
+i("c")
+
+print(l("o"))
+
+print(o(4))
+
+
+
+
+
+
 # lista = ["block 1", 2, "block 3"]
 
 # for x in range(1,5,3):
@@ -22,7 +59,7 @@ Lägg till 4 sist i listan (längst till höger)
 beräkna och skriv ut medelvärdet av talen i listan
 Sortera listan och skriv ut d
 '''
-
+'''
 lista = [2, 3, 2, 4, 1]
 lista[1] = 5
 lista[-1]= 6
@@ -36,3 +73,4 @@ medel = medel // len(lista)
 lista.append(medel)
 lista.sort()
 print(lista)
+'''
