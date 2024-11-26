@@ -1,5 +1,10 @@
 Elias Berntsson Loggbok
 =======================
+2024-11-26
+Gjorde annat
+
+2024-11-25
+Började på kod för en kortlek. Ska kunna ha grundläggande funktioner som att blanda kort mellan olika spelare, dra kort.
 
 2024-11-18
 läst lite olika delar och experimenterat 
