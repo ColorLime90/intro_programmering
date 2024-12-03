@@ -1,5 +1,12 @@
 Elias Berntsson Loggbok
 =======================
+
+2024-12-03
+Döpte om kortleken till Blackjack. Skrev en del på koden.
+
+2024-12-02
+Gjorde annat
+
 2024-11-26
 Gjorde annat
 
