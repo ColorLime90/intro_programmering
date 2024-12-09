@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2024-12-09
+Fortsatte med Blackjack
+
 2024-12-03
 Döpte om kortleken till Blackjack. Skrev en del på koden.
 
