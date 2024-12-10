@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2024-12-10
+Fortsatte med Blackjack
+
 2024-12-09
 Fortsatte med Blackjack
 
