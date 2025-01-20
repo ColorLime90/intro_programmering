@@ -29,7 +29,7 @@ def count_amount(kort, lista):
 
 #   Fel eftersom klädda kort är värda 10
 #
-#            def get_sum_of_value_of_cards_in_list(lista):      OLD
+#            def get_sum_of_value_of_cards_in_list(lista):      GAMMAL
 #                sum_tmp = 0
 #                for objekt in lista:
 #                    sum_kort_tmp = 0
@@ -78,7 +78,7 @@ def get_sum_of_value_of_cards_in_list_blackjack(lista):
 
 
 
-# x står för antal kort att dra
+# x står för antal kort att dra, om inget anges dras 1 kort
 
 def draw_player(x = 1):
     for i in range(1, int(x) + 1):
@@ -103,7 +103,7 @@ def draw_dealer_hidden(x = 1):
 print("Det finns", len(kortlek), "kort i kortleken")
 
 
-#Spelet startar:
+# Spelet startar:
 
 print()
 print("Utdelning av kort")
@@ -127,7 +127,47 @@ player_aces = get_sum_of_value_of_cards_in_list_blackjack(kort_player)[1]
 if player_aces == 0:
     print("Du har", len(kort_player) , "kort med summan", get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0])
 else:    
-    print("Du har", len(kort_player) , "kort med summan", str(get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]) + ". Du har också", player_aces, "ess.")
+    print("Du har", len(kort_player) , "kort med summan", str(get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]) + ", varav" + str(player_aces), "ess.")
 
 
 print()
+print(kort_player)
+print()
+
+# Spelaren får välja om hen vill dra mer kort eller inte, funkar ej om spelaren bustat (summa över 21)
+
+dra_mer_kort = True
+bust = False
+
+while dra_mer_kort == True and bust == False:
+
+    val = input("Vill du dra ett kort till eller checka? (dra, draw, hit / kolla, check, checka) ")
+
+    if val == "dra" or val == "draw" or val == "hit":
+
+        draw_player()
+
+        if player_aces == 0:
+            print("Du har", len(kort_player) , "kort med summan", get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0])
+        else:    
+            print("Du har", len(kort_player) , "kort med summan", str(get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]) + ". Du har också", player_aces, "ess.")
+
+    elif val == "kolla" or val == "check" or val == "checka":
+
+        dra_mer_kort = False
+
+    if get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0] > 21:
+        bust = True
+        print("Du har mer än 21...")
+
+if bust == True:
+    print("Du förlorade ):")
+else:
+    if get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] > get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]:
+
+        print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0], "vilket blir mer än dina kort:", get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]))
+
+#    elif get_sum_of_value_of_cards_in_list_blackjack()
+
+
+print(kort_player)

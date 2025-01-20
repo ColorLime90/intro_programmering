@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-01-20
+Gjorde annat skolarbete
+
 2024-12-10
 Fortsatte med Blackjack
 
