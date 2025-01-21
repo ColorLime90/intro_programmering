@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-01-21
+Utvecklade Blackjack lite.
+
 2025-01-20
 Gjorde annat skolarbete
 
