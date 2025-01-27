@@ -80,10 +80,11 @@ def get_sum_of_value_of_cards_in_list_blackjack(lista):
 # omvandlar ett ess i en kortlek från 11 till 1, minskar antal ess med 1 och skriver ut antal faktiska ess på index 3   [summa, effektiva ess, antal ess]
 
 def transform_ace(lista):
-    if int(lista[1]) > 0:
+    if lista[1] > 0:
         lista[0] = lista[0] - 10
         lista[1] = lista[1] - 1
-        lista[2] = count_amount("H1", lista) + count_amount("D1", lista) + count_amount("S1", lista) + count_amount("C1", lista)
+
+        lista.append(count_amount("H1", lista) + count_amount("D1", lista) + count_amount("S1", lista) + count_amount("C1", lista))
 
 
 # x står för antal kort att dra, om inget anges dras 1 kort
@@ -152,7 +153,7 @@ bust = False
 
 while dra_mer_kort == True and bust == False:
 
-    val = input("Vill du dra ett kort till eller checka? (dra, draw, hit / kolla, check, checka) ")
+    val = input("Vill du dra ett kort till eller checka? (dra, draw, hit / kolla, check, stand) ")
 
     print()
 
@@ -161,7 +162,7 @@ while dra_mer_kort == True and bust == False:
         draw_player()
         print()
 
-    elif val == "kolla" or val == "check" or val == "checka":
+    elif val == "kolla" or val == "check" or val == "stand":
 
         dra_mer_kort = False
 
@@ -177,13 +178,13 @@ while dra_mer_kort == True and bust == False:
         print("Du har mer än 21...")
 
     elif get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0] > 21 and player_aces > 0:
-        transform_ace(kort_player)
-    
+        transform_ace(get_sum_of_value_of_cards_in_list_blackjack(kort_player))
+        player_aces = player_aces - 1
     print()
 
     if dra_mer_kort == True and bust == False:
         if player_aces == 0:
-                print("Du har", len(kort_player) , "kort med summan", get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0])
+                print("Du har", len(kort_player) , "kort med summan", str(get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]) + ".")
         else:    
                 print("Du har", len(kort_player) , "kort med summan", str(get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]) + ". Du har också", player_aces, "aktiva ess.")
 

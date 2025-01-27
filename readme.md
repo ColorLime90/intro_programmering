@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-01-27
+Fortsatte med blackjack.
+
 2025-01-21
 Utvecklade Blackjack lite.
 
