@@ -28,7 +28,7 @@ def count_amount(kort, lista):
     return count_amount_tmp
 
 
-#   Fel eftersom klädda kort är värda 10
+#   Fel eftersom klädda kort är värda 10    GAMMAL
 #
 #            def get_sum_of_value_of_cards_in_list(lista):      GAMMAL
 #                sum_tmp = 0
@@ -191,11 +191,21 @@ while dra_mer_kort == True and bust == False:
 if bust == True:
     print("Du förlorade ):")
 else:
-    if get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] > get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]:
 
-        print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0], "vilket blir mer än dina kort:", get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]))
+    dra_mer_kort_dealer = True
+    while dra_mer_kort_dealer == True:
 
-#    elif get_sum_of_value_of_cards_in_list_blackjack()
+        if get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] > get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0] and get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] >= 17:
+
+            print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0], ", vilket blir mer än dina kort:", str(get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0])))
+            dra_mer_kort_dealer = False
+            print("Du förlorade ):")
+
+        elif get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] <= 17:
+
+            draw_dealer()
+    
+            #if get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] 
 
 
 print()
