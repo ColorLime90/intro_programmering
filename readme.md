@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-02-17
+Förbättrade en massa av blackjackkoden. Nästan klar.
+
 2025-01-28
 Övade på Github branching, aka gjorde annat.
 
