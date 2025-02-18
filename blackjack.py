@@ -6,6 +6,13 @@ kortlek = []
 kort_player = []
 kort_dealer = []
 
+# if kort_dealer_stats[0] > 21 and kort_dealer_stats[1] > 0:
+#           transform_ace(kort_dealer_stats)
+#           draw_dealer()
+#           if kort_dealer[int(len(kort_dealer)) - 1] == "H1" or kort_dealer[int(len(kort_dealer)) - 1] == "D1" or kort_dealer[int(len(kort_dealer)) - 1] == "S1" or kort_dealer[int(len(kort_dealer)) - 1] == "C1":
+#               kort_dealer_stats[1] = kort_dealer_stats[1] + 1
+#
+#
 # Skapa en kortleksbas  (kortlek_bas)
 
 for l in ("HDSC"):
@@ -126,7 +133,7 @@ print()
 draw_player(1)
 draw_dealer(1)
 draw_player(1)
-hidden = draw_dealer_hidden(1)
+draw_dealer_hidden(1)
 
 print()
 
@@ -160,7 +167,6 @@ bust = False
 while dra_mer_kort == True and bust == False:
 
     val = input("Vill du dra ett kort till eller checka? (dra, draw, hit / kolla, check, stand) ")
-
     print()
 
     if val == "dra" or val == "draw" or val == "hit":
@@ -181,13 +187,17 @@ while dra_mer_kort == True and bust == False:
 
     kort_player_stats = get_sum_of_value_of_cards_in_list_blackjack(kort_player)
 
-    if kort_player_stats[0] > 21 and kort_player_stats[1] == 0:
-        bust = True
-        print("Du har mer än 21...")
+    # Om summan är över 21, kolla om spelaren har ess eller om den bustat.
 
-    elif kort_player_stats[0] > 21 and kort_player_stats[1] > 0:
-        transform_ace(kort_player_stats)
-        print()
+    while kort_player_stats[0] > 21 and bust == False:
+
+        if kort_player_stats[1] == 0:
+            bust = True
+            print("Du har mer än 21...")
+            break
+
+        elif kort_player_stats[0] > 21 and kort_player_stats[1] > 0:
+            transform_ace(kort_player_stats)
 
     if dra_mer_kort == True and bust == False:
         if kort_player_stats[1] == 0:
@@ -199,6 +209,8 @@ print()
 print("Dealerns kort:", kort_dealer)
 print()
 
+kort_dealer_stats = get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)
+
 if bust == True:
 
     vinst = False
@@ -207,50 +219,66 @@ else:
 
     # Om dealern vinner utan att dra kort:
 
-    if get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] > get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0] and get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] >= 17 and get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] <= 21:
+    if kort_dealer_stats[0] > kort_player_stats[0] and kort_dealer_stats[0] >= 17 and kort_dealer_stats[0] <= 21:
 
-        print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0]) + ", vilket blir mer än summan av dina kort:", str(get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0]))
+        print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(kort_dealer_stats[0]) + ", vilket blir mer än summan av dina kort:", str(kort_player_stats[0]))
         dra_mer_kort_dealer = False
         vinst = False
 
-    elif get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] == get_sum_of_value_of_cards_in_list_blackjack(kort_player)[0] and get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] >= 17:
-        print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0]) + ", vilket blir lika mycket som dina kort.")
+    elif kort_dealer_stats[0] == kort_player_stats[0] and kort_dealer_stats[0] >= 17:
+        print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(kort_dealer_stats[0]) + ", vilket blir lika mycket som dina kort.")
         vinst = "lika"
+        dra_mer_kort_dealer = False
 
     else:
-        print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0]))
+        print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(kort_dealer_stats[0]))
         dra_mer_kort_dealer = True
+
 
     # Om dealern behöver dra mer kort:
 
-    kort_dealer_stats = get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)
-    
+    if dra_mer_kort_dealer == True:
+        print("Dealern behöver dra ett till kort")
+
     while dra_mer_kort_dealer == True:
+        
+        kort_dealer_stats = get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)
 
-        # Om dealern har över 21 och inga ess:
+        # Kolla om dealern har för mycket.
 
-        if kort_dealer_stats[0] > 21 and kort_dealer_stats[1] == 0:
+        while kort_dealer_stats[0] > 21:
 
-            print("Dealern bustade en hård nöt.")
-            dra_mer_kort_dealer = False
-            vinst = True
+            if kort_dealer_stats[1] == 0:
+                dra_mer_kort_dealer = False
+                print("Dealern bustade en hård nöt.")
+                vinst = True
+                break
 
-        # Om dealern har över 21 men minst ett ess:
-
-        elif kort_dealer_stats[0] > 21 and kort_dealer_stats[1] > 0:
-
-            transform_ace(kort_dealer_stats)
+            elif kort_dealer_stats[1] > 0:
+                transform_ace(kort_dealer_stats)
+        
+        if kort_dealer_stats[0] < 17:
             draw_dealer()
-            if kort_dealer[int(len(kort_dealer)) - 1] == "H1" or kort_dealer[int(len(kort_dealer)) - 1] == "D1" or kort_dealer[int(len(kort_dealer)) - 1] == "S1" or kort_dealer[int(len(kort_dealer)) - 1] == "C1":
-                kort_dealer_stats[1] = kort_dealer_stats[1] + 1
+        else:
+            dra_mer_kort_dealer = False
+
+
+    if kort_dealer_stats[0] > kort_player_stats[0] and kort_dealer_stats[0] >= 17 and kort_dealer_stats[0] <= 21:
+        print("Dealern har mer än dig")
+        vinst = False
+
+    elif kort_dealer_stats[0] == kort_player_stats[0] and kort_dealer_stats[0] >= 17:
+        print("Du och dealern har lika mycket")
+        vinst = "lika"
+
+    else:
+        print("Du har mer än dealern.")
+        vinst = True    
+
 
         # Om dealern har under 17:
 
-        elif get_sum_of_value_of_cards_in_list_blackjack(kort_dealer)[0] <= 17:
-
-            draw_dealer()
-            if kort_dealer[int(len(kort_dealer)) - 1] == "H1" or kort_dealer[int(len(kort_dealer)) - 1] == "D1" or kort_dealer[int(len(kort_dealer)) - 1] == "S1" or kort_dealer[int(len(kort_dealer)) - 1] == "C1":
-                kort_dealer_stats[1] = kort_dealer_stats[1] + 1
+        
 
         
 
@@ -267,6 +295,7 @@ elif vinst == "lika":
 print()
 print("spelarens kort:")
 print(kort_player)
+print(kort_player_stats)
 print("Dealerns kort:")
 print(kort_dealer)
 print(kort_dealer_stats)
