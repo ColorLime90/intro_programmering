@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-02-18
+Jag underskattade min förmåga när jag skrev att blackjackkoden nästan var klar. Nu är den nästan klar. Logiken bör funka nu.
+
 2025-02-17
 Förbättrade en massa av blackjackkoden. Nästan klar.
 
