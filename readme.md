@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-03-03
+Blackjack fungerar. La till pengar mm.
+
 2025-02-18
 Jag underskattade min förmåga när jag skrev att blackjackkoden nästan var klar. Nu är den nästan klar. Logiken bör funka nu.
 
