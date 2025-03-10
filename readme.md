@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-03-10
+Klar med blackjack, nu kan man spela kontinuerligt och satsa pengar (Tills man får slut på pengar)
+
 2025-03-03
 Blackjack fungerar. La till pengar mm.
 
