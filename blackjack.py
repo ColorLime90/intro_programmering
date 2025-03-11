@@ -1,7 +1,10 @@
+import os
+os.system('cls')
+
 import random
 import time
 kortlek_bas = []
-antal_kortlekar = 0
+antal_kortlekar = 1
 kortlek = []
 kort_player = []
 kort_player_stats = []
@@ -9,7 +12,7 @@ kort_dealer = []
 kort_dealer_stats = []
 runda = 0
 replay = True
-startpengar = 0
+startpengar = 1
 pengar = 0
 insats = 0
 
@@ -124,34 +127,54 @@ for l in ("HDSC"):
     for n in range(1, 14):
         kortlek_bas.append(str(l) + str(n))
 
+print("Inställningar:")
+time.sleep(2)
+print()
+
 # Använd kortleksbas för att skapa en aktiv kortlek (kortlek)
 
 correct_input = False
 while not correct_input:
     antal_kortlekar = input("Hur många kortlekar vill du spela med? ")
     if antal_kortlekar.isdigit():
-        correct_input = True
-            
+        antal_kortlekar = int(antal_kortlekar)
+        if antal_kortlekar > 0:
+            correct_input = True
+        else:
+            print("Ange ett vettigt nummer.")
     else:
         print("Kunde inte läsa, försök igen.")
-        print()
+    time.sleep(1)
+    print()
         
 # Inställningar för pengar
 
 correct_input = False
 while not correct_input:
-    startpengar = input("Hur mycket pengar vill du börja med? ")
-    if startpengar.isdigit():
-        startpengar = int(startpengar)
-        pengar = startpengar
-        correct_input = True
-            
+    pengar = input("Vill du spela med pengar? (ja, yes, y / nej, no, n) ")
+    if pengar == "nej" or pengar == "no" or pengar == "n":
+        pengar = False
     else:
-        print("Kunde inte läsa, försök igen.")
-        print()
+        correct_input = False
+        while not correct_input:
+            startpengar = input("Hur mycket pengar vill du börja med? ")
+            if startpengar.isdigit():
+                startpengar = int(startpengar)
+                if startpengar > 0:
+                    pengar = startpengar
+                    correct_input = True       
+                else:
+                    print("Du måste börja med något")
+            else:
+                print("Kunde inte läsa, försök igen.")
+    time.sleep(1)
+    print()
+
+os.system('cls')
 
 print("Dags att spela!")
 time.sleep(2)
+print()
 
 # RUNDA STARTAR
 
@@ -169,26 +192,28 @@ while replay == True:
     print("Runda", runda)
     time.sleep(2)
 
-    correct_input = False
-    while not correct_input:
-        insats = input("Hur mycket pengar vill du satsa? ") # print("(Du har", str(pengar) + ")")
-        
-        if insats.isdigit() == True:
-            insats = int(insats)
-            if insats >= 0:
-                if insats != 0:
-                    if insats <= pengar:
-                        correct_input = True
-                    else:    
-                        print("Du kan inte satsa mer än du har...")
+    if pengar == False:
+        break
+    else:
+        correct_input = False
+        while not correct_input:
+            insats = input(f'Hur mycket pengar vill du satsa? (Du har {pengar}) ') 
+            if insats.isdigit() == True:
+                insats = int(insats)
+                if insats >= 0:
+                    if insats != 0:
+                        if insats <= pengar:
+                            correct_input = True
+                        else:    
+                            print("Du kan inte satsa mer än du har...")
+                    else:
+                        print("Du måste satsa något :)")
                 else:
-                    print("Du måste satsa något :)")
+                    print("Vänligen skriv en positiv summa")
             else:
-                print("Vänligen skriv en positiv summa")
-        else:
-            print("Vänligen skriv en summa")
-        time.sleep(2)
-        print()
+                print("Vänligen skriv en summa")
+            time.sleep(2)
+            print()
 
     print("Det finns", len(kortlek), "kort i kortleken")
     time.sleep(2)
@@ -221,6 +246,8 @@ while replay == True:
 
     if kort_player_stats[1] == 0:
         print("Du har", len(kort_player) , "kort med summan", kort_player_stats[0])
+    elif kort_player_stats[1] == 1:
+        print("Du har", len(kort_player) , "kort med summan", str(kort_player_stats[0]) + ", varav", str(kort_player_stats[1]), "aktivt ess.")
     else:    
         print("Du har", len(kort_player) , "kort med summan", str(kort_player_stats[0]) + ", varav", str(kort_player_stats[1]), "aktiva ess.")
 
@@ -234,8 +261,7 @@ while replay == True:
 
     while dra_mer_kort == True and bust == False:
 
-        val = input("Vill du dra ett kort till eller checka? (dra, draw, hit / kolla, check, stand) ")
-        print()
+        val = input("Vill du dra ett kort till eller checka? (dra, draw, hit / stå, check, stand) ")
 
         if val == "dra" or val == "draw" or val == "hit":
 
@@ -244,7 +270,7 @@ while replay == True:
             print()
             
 
-        elif val == "kolla" or val == "check" or val == "stand":
+        elif val == "stå" or val == "check" or val == "stand":
 
             dra_mer_kort = False
 
@@ -291,19 +317,19 @@ while replay == True:
 
         if kort_dealer_stats[0] > kort_player_stats[0] and kort_dealer_stats[0] >= 17 and kort_dealer_stats[0] <= 21:
 
-            print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(kort_dealer_stats[0]) + ", vilket blir mer än summan av dina kort:", str(kort_player_stats[0]))
+            print("Dealern hade förutom kortet", str(kort_dealer[0]), "också kortet", str(kort_dealer[1]), "med summan", str(kort_dealer_stats[0]) + ", vilket blir mer än summan av dina kort:", str(kort_player_stats[0]))
             time.sleep(3)
             dra_mer_kort_dealer = False
             vinst = False
 
         elif kort_dealer_stats[0] == kort_player_stats[0] and kort_dealer_stats[0] >= 17:
-            print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(kort_dealer_stats[0]) + ", vilket blir lika mycket som dina kort.")
+            print("Dealern hade förutom kortet", str(kort_dealer[0]), "också kortet", str(kort_dealer[1]), "med summan", str(kort_dealer_stats[0]) + ", vilket blir lika mycket som dina kort.")
             time.sleep(3)
             vinst = "lika"
             dra_mer_kort_dealer = False
 
         else:
-            print("Dealern hade förutom kortet", str(kort_dealer[1]), "också kortet", str(kort_dealer[0]), "med summan", str(kort_dealer_stats[0]))
+            print("Dealern hade förutom kortet", str(kort_dealer[0]), "också kortet", str(kort_dealer[1]), "med summan", str(kort_dealer_stats[0]))
             time.sleep(3)
             dra_mer_kort_dealer = True
 
@@ -327,17 +353,18 @@ while replay == True:
 
                 elif kort_dealer_stats[1] > 0:
                     transform_ace(kort_dealer_stats)
+                    print("Dealerns ess omvandlas till 1")
             
             if kort_dealer_stats[0] < 17:
                 print("Dealern behöver dra ett till kort")
                 time.sleep(2)
                 draw_dealer()
-                time.sleep(1)
+                time.sleep(3)
             else:
                 dra_mer_kort_dealer = False
 
         if kort_dealer_stats[0] > kort_player_stats[0] and kort_dealer_stats[0] >= 17 and kort_dealer_stats[0] <= 21:
-            print("Dealern har mer än dig:", kort_dealer_stats[0])
+            print("Dealern har mer än dig. (" + str(kort_dealer_stats[0]) + ")")
             time.sleep(2)
             vinst = False
 
@@ -347,20 +374,28 @@ while replay == True:
             vinst = "lika"
 
         else:
-            print("Du har mer än dealern.")
+            print("Du har mer än dealern; som har", kort_dealer_stats[0])
             time.sleep(2)
             vinst = True    
 
     # RESULTAT        
 
-    if vinst == False:
-        print("Du förlorade ):")
-        pengar = pengar - insats
-    elif vinst == True:
-        print("Du vann!")
-        pengar = pengar + insats
-    elif vinst == "lika":
-        print("Det blev lika.")
+    if pengar == False:
+        if vinst == False:
+            print("Du förlorade ):")
+        elif vinst == True:
+            print("Du vann!")
+        elif vinst == "lika":
+            print("Det blev lika.")
+    else:
+        if vinst == False:
+            print("Du förlorade ):")
+            pengar = pengar - insats
+        elif vinst == True:
+            print("Du vann!")
+            pengar = pengar + insats
+        elif vinst == "lika":
+            print("Det blev lika.")
 
     time.sleep(3)
 
@@ -372,12 +407,14 @@ while replay == True:
     print("Dealerns kort:", kort_dealer)
     print("Kortsumma dealer:", kort_dealer_stats[0])
     print()
-    print("Pengar:", pengar)
-    print("Netto:", pengar - startpengar)
+    if pengar != False:
+        print("Pengar:", pengar)
+        print("Netto:", pengar - startpengar)
+        print()
 
     time.sleep(3)
 
-    if pengar != 0:
+    if pengar != 0 or pengar == False:
 
         replay = input("Spela igen? (nej, no, n / ja, japp, jajamänsan, absolut, nu kör vi, gurka) ")
         if replay == "nej" or replay == "no" or replay == "False" or replay == "n":

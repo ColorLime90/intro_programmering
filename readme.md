@@ -1,8 +1,11 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-03-11
+La till ytterligare funktioner såsom valet att inte behöva satsa pengar. Finslipade prompts så att de stämmer inför singular och plural (t.ex texten "aktiva ess" och "aktivt ess"). La till cls. 
+
 2025-03-10
-Klar med blackjack, nu kan man spela kontinuerligt och satsa pengar (Tills man får slut på pengar)
+Klar med blackjack så att det fungerar och man kan spela det, nu kan man spela kontinuerligt och satsa pengar (Tills man får slut på pengar)
 
 2025-03-03
 Blackjack fungerar. La till pengar mm.
