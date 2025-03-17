@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-0317
+Läste lite om RSA: https://people.kth.se/~johantor/foredrag/lusttur/ht03/rsa/index.html 
+
 2025-03-11
 La till ytterligare funktioner såsom valet att inte behöva satsa pengar. Finslipade prompts så att de stämmer inför singular och plural (t.ex texten "aktiva ess" och "aktivt ess"). La till cls. 
 
