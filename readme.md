@@ -1,7 +1,16 @@
 Elias Berntsson Loggbok
 =======================
 
-2025-0317
+2025-03-18
+Läste på om pygame, hur man ritar ut figurer samt hur man kan få figurerna att röra på sig med piltangenterna på ett sätt där rörelsen känns bra och responsiv. Sammanställde lite av detta i [mygame.py](/mygame.py)
+
+pygame guide:    http://programarcadegames.com/index.php?chapter=introduction_to_graphics&lang=sv#section_5 
+
+movement tutorial:  https://www.youtube.com/watch?v=jZ5KmgOGHZI
+
+
+
+2025-03-17
 Läste lite om RSA: https://people.kth.se/~johantor/foredrag/lusttur/ht03/rsa/index.html 
 
 2025-03-11
