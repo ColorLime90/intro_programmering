@@ -6,6 +6,8 @@ Läste på om pygame, hur man ritar ut figurer samt hur man kan få figurerna at
 
 pygame guide:    http://programarcadegames.com/index.php?chapter=introduction_to_graphics&lang=sv#section_5 
 
+draw circle:    https://www.pygame.org/docs/ref/draw.html#pygame.draw.circle
+
 movement tutorial:  https://www.youtube.com/watch?v=jZ5KmgOGHZI
 
 
