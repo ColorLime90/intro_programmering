@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-03-24
+Skrev på [mygame.py](/mygame.py), fixade vågrät rörelse för en boll med acceleration. 
+
 2025-03-18
 Läste på om pygame, hur man ritar ut figurer samt hur man kan få figurerna att röra på sig med piltangenterna på ett sätt där rörelsen känns bra och responsiv. Sammanställde lite av detta i [mygame.py](/mygame.py)
 
@@ -9,7 +12,6 @@ pygame guide:    http://programarcadegames.com/index.php?chapter=introduction_to
 draw circle:    https://www.pygame.org/docs/ref/draw.html#pygame.draw.circle
 
 movement tutorial:  https://www.youtube.com/watch?v=jZ5KmgOGHZI
-
 
 
 2025-03-17

@@ -33,6 +33,11 @@ move_right = False
 move_up = False
 move_down = False
 
+a_or_d = False
+w_or_s = False
+
+any_movement = x_speed or y_speed
+
 # Add visual elements to the game
  
 # Used to manage how fast the screen updates
@@ -40,6 +45,10 @@ clock = pygame.time.Clock()
 
 # Loop until the user clicks the close button.
 is_running = True
+
+# Functions
+def accelerate(variable):
+    return variable * 1.2
  
 # -------- Main Program Loop -----------
 while is_running:
@@ -57,6 +66,10 @@ while is_running:
                 move_up = True
             if event.key == pygame.K_DOWN:
                 move_down = True
+            if event.key == pygame.K_a or event.key == pygame.K_d:
+                a_or_d = True
+            if event.key == pygame.K_w or event.key == pygame.K_s:
+                w_or_s = True
 
         elif event.type == pygame.KEYUP:
 
@@ -68,22 +81,64 @@ while is_running:
                 move_up = False
             if event.key == pygame.K_DOWN:
                 move_down = False
-
-    if move_right:
-        x_speed = 3
-    if move_left:
-        x_speed = -3
-    if move_up:
-        y_speed = -3
-    if move_down:
-        y_speed = 3
+            if event.key == pygame.K_a or event.key == pygame.K_d:
+                a_or_d = False
+            if event.key == pygame.K_w or event.key == pygame.K_s:
+                w_or_s = False
 
 
 
+    if x_speed == 0:
 
-    if move_right and move_left:
+        if move_left:
+            x_speed = -0.1
+        if move_right:
+            x_speed = 0.1
+
+
+    
+    elif x_speed < 0:
+
+        if move_left:
+            x_speed = x_speed * 1.1
+            if x_speed < -5:
+                x_speed = -5
+        if move_right:
+            if x_speed > -0.1:
+                x_speed = 0.1
+            
+            else:
+                x_speed = x_speed / 1.1
+
+
+
+    elif x_speed > 0 :
+
+        if move_right:
+            x_speed = x_speed * 1.1
+            if x_speed > 5:
+                x_speed = 5
+        if move_left:
+            if x_speed < 0.1:
+                x_speed = -0.1
+            
+            else:
+                x_speed = x_speed / 1.1
+
+
+    if y_speed == 0:
+
+        if move_up:
+            y_speed = -0.1
+        if move_down:
+            y_speed = 0.1
+
+
+
+
+    if a_or_d:
         x_speed = 0
-    if move_up and move_down:
+    if w_or_s:
         y_speed = 0
 
     # --- Game logic should go here
