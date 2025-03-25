@@ -102,11 +102,6 @@ while is_running:
         if x_speed > 4:
             x_speed = 4
 
-
-    
-
- 
-
     if move_up:
         y_speed = y_speed - 0.2
         if y_speed < -4:
@@ -129,10 +124,17 @@ while is_running:
 
     # --- Game logic should go here
     
-    if x < 0 or x > 500:
+    y_speed = y_speed + 0.1
+
+    if x <= 10 or x >= 490:
         x_speed = x_speed * -1
-    if y < 0 or y > 500:
+    if y <= 10:
         y_speed = y_speed * -1
+    if y >= 490:
+        y_speed = y_speed * 0.8
+        y_speed = y_speed * -1
+
+    
 
     x += x_speed
     y += y_speed

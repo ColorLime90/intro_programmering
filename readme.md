@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-03-25
+Skrev på [ballgame.py](/ballgame.py). Jag löser mina problem med kunskaper de jag redan har, vilket leder till rolig men inte bäst kod. Spelet har en boll som dras neråt av gravitation och studsar när den nuddar väggar. När den nuddar marken så förlorar den lite av sin vertikala hastighet. Bollens rörelse kan påverkas av piltangenterna. q och e centrerar bollen, a och d bollställer vågrät rörelse, w och s återställer lodrät rörelse.
+
 2025-03-24
 Skrev på [ballgame.py](/ballgame.py), fixade vågrät rörelse för en boll med acceleration. 
 
