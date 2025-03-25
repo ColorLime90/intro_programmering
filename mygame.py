@@ -49,7 +49,7 @@ is_running = True
 
 # Functions
 def accelerate(variable):
-    return variable * 1.2
+    return variable + 0.09
  
 # -------- Main Program Loop -----------
 while is_running:
@@ -92,78 +92,31 @@ while is_running:
                 q_or_e = False
 
 
-    if x_speed == 0:
-
-        if move_left:
-            x_speed = -0.1
-        if move_right:
-            x_speed = 0.1
+   
+    if move_left:
+        x_speed = x_speed - 0.2
+        if x_speed < -4:
+            x_speed = -4
+    if move_right:
+        x_speed = x_speed + 0.2
+        if x_speed > 4:
+            x_speed = 4
 
 
     
-    elif x_speed < 0:
 
-        if move_left:
-            x_speed = x_speed * 1.2
-            if x_speed < -4:
-                x_speed = -4
-        if move_right:
-            if x_speed > -0.1:
-                x_speed = 0.1
+ 
+
+    if move_up:
+        y_speed = y_speed - 0.2
+        if y_speed < -4:
+            y_speed = -4
+    if move_down:
+        y_speed = y_speed + 0.2
+        if y_speed > 4:
+            y_speed = 4
+        
             
-            else:
-                x_speed = x_speed / 1.2
-
-
-
-    elif x_speed > 0 :
-
-        if move_right:
-            x_speed = x_speed * 1.2
-            if x_speed > 4:
-                x_speed = 4
-        if move_left:
-            if x_speed < 0.1:
-                x_speed = -0.1
-            
-            else:
-                x_speed = x_speed / 1.2
-
-
-    if y_speed == 0:
-
-        if move_up:
-            y_speed = -0.1
-        if move_down:
-            y_speed = 0.1
-
-    elif y_speed < 0:
-
-        if move_up:
-            y_speed = y_speed * 1.2
-            if y_speed < -4:
-                y_speed = -4
-        if move_down:
-            if y_speed > -0.1:
-                y_speed = 0.1
-            
-            else:
-                y_speed = y_speed / 1.2
-
-
-
-    elif y_speed > 0 :
-
-        if move_down:
-            y_speed = y_speed * 1.2
-            if y_speed > 4:
-                y_speed = 4
-        if move_up:
-            if y_speed < 0.1:
-                y_speed = -0.1
-            
-            else:
-                y_speed = y_speed / 1.2
 
 
     if a_or_d:
