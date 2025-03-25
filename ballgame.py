@@ -129,10 +129,15 @@ while is_running:
 
     # --- Game logic should go here
     
+    if x < 0 or x > 500:
+        x_speed = x_speed * -1
+    if y < 0 or y > 500:
+        y_speed = y_speed * -1
+
     x += x_speed
     y += y_speed
 
-
+   
     # --- Screen-clearing code goes here
  
     # Here, we clear the screen to white. Don't put other drawing commands
