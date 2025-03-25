@@ -35,6 +35,7 @@ move_down = False
 
 a_or_d = False
 w_or_s = False
+q_or_e = False
 
 any_movement = x_speed or y_speed
 
@@ -70,6 +71,8 @@ while is_running:
                 a_or_d = True
             if event.key == pygame.K_w or event.key == pygame.K_s:
                 w_or_s = True
+            if event.key == pygame.K_q or event.key == pygame.K_e:
+                q_or_e = True
 
         elif event.type == pygame.KEYUP:
 
@@ -85,7 +88,8 @@ while is_running:
                 a_or_d = False
             if event.key == pygame.K_w or event.key == pygame.K_s:
                 w_or_s = False
-
+            if event.key == pygame.K_q or event.key == pygame.K_e:
+                q_or_e = False
 
 
     if x_speed == 0:
@@ -100,30 +104,30 @@ while is_running:
     elif x_speed < 0:
 
         if move_left:
-            x_speed = x_speed * 1.1
-            if x_speed < -5:
-                x_speed = -5
+            x_speed = x_speed * 1.2
+            if x_speed < -4:
+                x_speed = -4
         if move_right:
             if x_speed > -0.1:
                 x_speed = 0.1
             
             else:
-                x_speed = x_speed / 1.1
+                x_speed = x_speed / 1.2
 
 
 
     elif x_speed > 0 :
 
         if move_right:
-            x_speed = x_speed * 1.1
-            if x_speed > 5:
-                x_speed = 5
+            x_speed = x_speed * 1.2
+            if x_speed > 4:
+                x_speed = 4
         if move_left:
             if x_speed < 0.1:
                 x_speed = -0.1
             
             else:
-                x_speed = x_speed / 1.1
+                x_speed = x_speed / 1.2
 
 
     if y_speed == 0:
@@ -133,13 +137,42 @@ while is_running:
         if move_down:
             y_speed = 0.1
 
+    elif y_speed < 0:
 
+        if move_up:
+            y_speed = y_speed * 1.2
+            if y_speed < -4:
+                y_speed = -4
+        if move_down:
+            if y_speed > -0.1:
+                y_speed = 0.1
+            
+            else:
+                y_speed = y_speed / 1.2
+
+
+
+    elif y_speed > 0 :
+
+        if move_down:
+            y_speed = y_speed * 1.2
+            if y_speed > 4:
+                y_speed = 4
+        if move_up:
+            if y_speed < 0.1:
+                y_speed = -0.1
+            
+            else:
+                y_speed = y_speed / 1.2
 
 
     if a_or_d:
         x_speed = 0
     if w_or_s:
         y_speed = 0
+    if q_or_e:
+        x = 250
+        y = 250
 
     # --- Game logic should go here
     
