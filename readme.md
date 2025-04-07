@@ -1,6 +1,12 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-04-07
+Skapade en ny pythonfil vid namn [mastergame.py](/mastergame.py). Jag kopierade över kod för inmatning samt rörelse från [ballgame.py](/ballgame.py) till [mastergame.py](/mastergame.py) som jag tyckte var bra. La till en text i spelet som räknar studsar (ej fungerande) och läste på lite om [kod för sprites](https://github.com/karlsson0214/demo_pygame/blob/main/04_droppings_v3_sprite.py).
+
+2025-03-31
+Gjorde annat skolarbete.
+
 2025-03-25
 Skrev på [ballgame.py](/ballgame.py). Jag löser mina problem med kunskaper de jag redan har, vilket leder till rolig men inte bäst kod. Spelet har en boll som dras neråt av gravitation och studsar när den nuddar väggar. När den nuddar marken så förlorar den lite av sin vertikala hastighet. Bollens rörelse kan påverkas av piltangenterna. q och e centrerar bollen, a och d bollställer vågrät rörelse, w och s återställer lodrät rörelse.
 
