@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-04-08
+Fortsatte arbeta på [mastergame.py](/mastergame.py). Gjorde skärmen större och exeperimenterade med lite dynamiska mått. Började omvandla bollen till en sprite, la till att bollens radie blir större med q eller e. 
+
 2025-04-07
 Skapade en ny pythonfil vid namn [mastergame.py](/mastergame.py). Jag kopierade över kod för inmatning samt rörelse från [ballgame.py](/ballgame.py) till [mastergame.py](/mastergame.py) som jag tyckte var bra. La till en text i spelet som räknar studsar (ej fungerande) och läste på lite om [kod för sprites](https://github.com/karlsson0214/demo_pygame/blob/main/04_droppings_v3_sprite.py).
 

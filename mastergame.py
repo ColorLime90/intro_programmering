@@ -1,5 +1,5 @@
 import pygame
-
+import random
 
 # Define some colors
 BLACK = (0, 0, 0)
@@ -11,7 +11,10 @@ RED = (255, 0, 0)
 pygame.init()
  
 # Set the width and height of the screen [width, height]
-size = (500, 500)
+screen_width = 1500
+screen_height = 700
+
+size = (screen_width, screen_height)
 screen = pygame.display.set_mode(size)
  
 pygame.display.set_caption("Mastergame")
@@ -37,14 +40,17 @@ any_movement = x_speed or y_speed
 
 # Add visual elements to the game
 
+ball = pygame.sprite.Sprite()
+ball.radius = 10
+print(ball.radius)
+
 antal_studs = 0
 studs = "Studs: " + str(antal_studs)
 
 font = pygame.font.Font(None, 36)
 text = font.render(studs, True, BLACK, WHITE)
 textRect = text.get_rect()
-print(textRect)
-textRect.center = ((1000 - int(textRect[2])) // 2, (0 + int(textRect[3])) // 2)
+textRect.center = (screen_width - int(textRect[2]), (0 + int(textRect[3])))
  
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
@@ -124,23 +130,28 @@ while is_running:
     if q_or_e:
         x = 250
         y = 250
+        ball.radius = ball.radius + 1
 
     # --- Game logic should go here
     
-    y_speed = y_speed + 0.1
+    y_speed + 0.1
 
-    if x <= 10 or x >= 490:
+    if x <= ball.radius or x >= screen_width - ball.radius:
         x_speed = x_speed * -1
-    if y <= 10:
+    if y <= ball.radius:
         y_speed = y_speed * -1
-    if y >= 490:
+    if y >= screen_height - ball.radius:
         y_speed = y_speed * 0.8
         y_speed = y_speed * -1
 
-    
+    if y + ball.radius > screen_height:
+        print("oj")
 
     x += x_speed
     y += y_speed
+
+
+
     antal_studs = antal_studs + 1
     studs = "Studs:" + str(antal_studs)
    
@@ -155,7 +166,8 @@ while is_running:
  
     # --- Drawing code should go here
     
-    pygame.draw.circle(screen, BLUE, (x, y), 10)
+    pygame.draw.circle(screen, BLUE, (x, y), ball.radius)
+    
     screen.blit(text, textRect)
 
     # --- Go ahead and update the screen with what we've drawn.
