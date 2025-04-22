@@ -140,31 +140,30 @@ while is_running:
     
     y_speed + 0.1
 
-    if x <= ball.radius or x >= screen_width - ball.radius:
-        x_speed = x_speed * -1
+    if x + x_speed > screen_width - ball.radius:
+        x = screen_width - ball.radius
+        x_speed *= -1
+        print("studs höger")
 
-    '''
-    if y <= ball.radius:
-        y_speed = y_speed * -1
-    if y >= screen_height - ball.radius:
-        y_speed = y_speed * 0.8
-        y_speed = y_speed * -1
-    '''    
+    if  x + x_speed < 0 + ball.radius:
+        x = 0 + ball.radius
+        x_speed *= -1
+        print("studs vänster")
 
     x += x_speed
-    y += y_speed
+    
 
-    if y + ball.radius >= screen_height:
+    if y + y_speed > screen_height - ball.radius:
         y = screen_height - ball.radius
         y_speed *= -1
         print("studs nere")
 
-    if screen_height - ball.radius <= y:
-        y = ball.radius
+    if  y + y_speed < 0 + ball.radius:
+        y = 0 + ball.radius
         y_speed *= -1
         print("studs uppe")
 
-    
+    y += y_speed
 
 
     # Textwindows
