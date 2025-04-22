@@ -23,6 +23,7 @@ pygame.display.set_caption("Mastergame")
 x_speed = 0
 y_speed = 0
 
+speed_max = 100
 # Startposition
 x = 250
 y = 250
@@ -104,25 +105,21 @@ while is_running:
    
     if move_left:
         x_speed = x_speed - 0.2
-        if x_speed < -4:
-            x_speed = -4
+        if x_speed < -1 * speed_max:
+            x_speed = -1 * speed_max 
     if move_right:
         x_speed = x_speed + 0.2
-        if x_speed > 4:
-            x_speed = 4
+        if x_speed > speed_max:
+            x_speed = speed_max
 
     if move_up:
-        '''
-        if y == ball.radius:
-            x = 0.2
-            '''
         y_speed = y_speed - 0.2
-        if y_speed < -4:
-            y_speed = -4
+        if y_speed < -1 * speed_max:
+            y_speed = -1 * speed_max
     if move_down:
         y_speed = y_speed + 0.2
-        if y_speed > 4:
-            y_speed = 4
+        if y_speed > speed_max:
+            y_speed = speed_max
         
             
 
