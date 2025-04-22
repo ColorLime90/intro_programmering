@@ -9,7 +9,7 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
  
 pygame.init()
- 
+
 # Set the width and height of the screen [width, height]
 screen_width = 1500
 screen_height = 750
@@ -35,7 +35,8 @@ move_down = False
 
 a_or_d = False
 w_or_s = False
-q_or_e = False
+key_e = False
+key_q = False
 
 any_movement = x_speed or y_speed
 
@@ -81,8 +82,10 @@ while is_running:
                 a_or_d = True
             if event.key == pygame.K_w or event.key == pygame.K_s:
                 w_or_s = True
-            if event.key == pygame.K_q or event.key == pygame.K_e:
-                q_or_e = True
+            if event.key == pygame.K_q:
+                key_q = True
+            if event.key == pygame.K_e:
+                key_e = True
 
         elif event.type == pygame.KEYUP:
 
@@ -98,8 +101,10 @@ while is_running:
                 a_or_d = False
             if event.key == pygame.K_w or event.key == pygame.K_s:
                 w_or_s = False
-            if event.key == pygame.K_q or event.key == pygame.K_e:
-                q_or_e = False
+            if event.key == pygame.K_q:
+                key_q = False
+            if event.key == pygame.K_e:
+                key_e = False
 
 
    
@@ -128,10 +133,12 @@ while is_running:
         x_speed = 0
     if w_or_s:
         y_speed = 0
-    if q_or_e:
+    if key_e:
         x = 250
         y = 250
         ball.radius = ball.radius + 1
+    if key_q:
+        ball.radius = ball.radius - 1
 
     # --- Game logic should go here
     
