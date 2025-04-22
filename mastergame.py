@@ -12,7 +12,7 @@ pygame.init()
  
 # Set the width and height of the screen [width, height]
 screen_width = 1500
-screen_height = 700
+screen_height = 750
 
 size = (screen_width, screen_height)
 screen = pygame.display.set_mode(size)
@@ -45,10 +45,10 @@ ball.radius = 10
 print(ball.radius)
 
 antal_studs = 0
-studs = "Studs: " + str(antal_studs)
+cornertext = ""
 
 font = pygame.font.Font(None, 36)
-text = font.render(studs, True, BLACK, WHITE)
+text = font.render(cornertext, True, BLACK, WHITE)
 textRect = text.get_rect()
 textRect.center = (screen_width - int(textRect[2]), (0 + int(textRect[3])))
  
@@ -112,6 +112,10 @@ while is_running:
             x_speed = 4
 
     if move_up:
+        '''
+        if y == ball.radius:
+            x = 0.2
+            '''
         y_speed = y_speed - 0.2
         if y_speed < -4:
             y_speed = -4
@@ -138,22 +142,38 @@ while is_running:
 
     if x <= ball.radius or x >= screen_width - ball.radius:
         x_speed = x_speed * -1
+
+    '''
     if y <= ball.radius:
         y_speed = y_speed * -1
     if y >= screen_height - ball.radius:
         y_speed = y_speed * 0.8
         y_speed = y_speed * -1
-
-    if y + ball.radius > screen_height:
-        print("oj")
+    '''    
 
     x += x_speed
     y += y_speed
 
+    if y + ball.radius >= screen_height:
+        y = screen_height - ball.radius
+        y_speed *= -1
+        print("studs nere")
+
+    if screen_height - ball.radius <= y:
+        y = ball.radius
+        y_speed *= -1
+        print("studs uppe")
+
+    
 
 
-    antal_studs = antal_studs + 1
-    studs = "Studs:" + str(antal_studs)
+    # Textwindows
+
+    cornertext = "x: " + str(int(x)) + "   " + "y: " + str(int(y))
+    textRect = text.get_rect()
+    textRect.center = (screen_width - int(textRect[2]), (0 + int(textRect[3])))
+
+    text = font.render(cornertext, True, BLACK, WHITE)
    
     # --- Screen-clearing code goes here
  
@@ -174,7 +194,7 @@ while is_running:
     pygame.display.flip()
  
     # --- Limit to 60 frames per second
-    clock.tick(60 )
+    clock.tick(60)
  
 # Close the window and quit.
 print("quitting...")
