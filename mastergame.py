@@ -38,18 +38,17 @@ w_or_s = False
 key_e = False
 key_q = False
 
-any_movement = x_speed or y_speed
-
 # Add visual elements to the game
 
 ball = pygame.sprite.Sprite()
 ball.radius = 10
-print(ball.radius)
 
 antal_studs = 0
-cornertext = ""
+cornertext = "x:       y:    "
 
-font = pygame.font.Font(None, 36)
+print(pygame.font.get_fonts())
+
+font = pygame.font.Font(pygame.font.match_font("courier"), 36)
 text = font.render(cornertext, True, BLACK, WHITE)
 textRect = text.get_rect()
 textRect.center = (screen_width - int(textRect[2]), (0 + int(textRect[3])))
@@ -171,11 +170,14 @@ while is_running:
 
 
     # Textwindows
-
-    cornertext = "x: " + str(int(x)) + "   " + "y: " + str(int(y))
-    textRect = text.get_rect()
-    textRect.center = (screen_width - int(textRect[2]), (0 + int(textRect[3])))
-
+    cornertext_x = str(int(x))
+    cornertext_y = str(int(y))
+    for i in range (4 - len(str(int(x)))):
+        cornertext_x += " "
+    for i in range (3 - len(str(int(y)))):
+        cornertext_y += " "
+    cornertext = "x: " + cornertext_x + "   y: " + cornertext_y
+      
     text = font.render(cornertext, True, BLACK, WHITE)
    
     # --- Screen-clearing code goes here

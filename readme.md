@@ -1,6 +1,9 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-04-28
+Fixade textrutan i [mastergame.py](/mastergame.py) så att texten och rutan inte ändrar position och storlek när t.ex. x-koordinaten går från hundratal till tusental.
+
 2025-04-22
 [mastergame.py](/mastergame.py), la till så att man ser bollens koordinater uppe i högra textrutan. Ett problem som uppstod var att koordinaterna bestod av ett stort antal decimaler, jag löste det genom att använda str(int(x)) konverterade koordinaterna till heltal. Fixade så att bollen inte fastnar ibland när den studsar genom att arbeta om kollision. En nackdel med min lösning är att den inte använder någon av pygame.sprite s collide funktioner. Däremot så kan den använder den sig av vissa variabler såsom max_speed så att den går att anpassa.
 
