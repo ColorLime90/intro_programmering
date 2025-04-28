@@ -24,6 +24,9 @@ x_speed = 0
 y_speed = 0
 
 speed_max = 100
+acceleration = 0.2  # +
+retardation = 0.1   # -
+
 # Startposition
 x = 250
 y = 250
@@ -44,9 +47,7 @@ ball = pygame.sprite.Sprite()
 ball.radius = 10
 
 antal_studs = 0
-cornertext = "x:       y:    "
-
-print(pygame.font.get_fonts())
+cornertext = "x: xxxx   y: yyy"
 
 font = pygame.font.Font(pygame.font.match_font("courier"), 36)
 text = font.render(cornertext, True, BLACK, WHITE)
@@ -108,20 +109,20 @@ while is_running:
 
    
     if move_left:
-        x_speed = x_speed - 0.2
+        x_speed = x_speed - acceleration
         if x_speed < -1 * speed_max:
             x_speed = -1 * speed_max 
     if move_right:
-        x_speed = x_speed + 0.2
+        x_speed = x_speed + acceleration
         if x_speed > speed_max:
             x_speed = speed_max
 
     if move_up:
-        y_speed = y_speed - 0.2
+        y_speed = y_speed - acceleration
         if y_speed < -1 * speed_max:
             y_speed = -1 * speed_max
     if move_down:
-        y_speed = y_speed + 0.2
+        y_speed = y_speed + acceleration
         if y_speed > speed_max:
             y_speed = speed_max
         
@@ -141,7 +142,6 @@ while is_running:
 
     # --- Game logic should go here
     
-    y_speed + 0.1
 
     if x + x_speed > screen_width - ball.radius:
         x = screen_width - ball.radius
@@ -153,8 +153,6 @@ while is_running:
         x_speed *= -1
         print("studs vänster")
 
-    x += x_speed
-    
 
     if y + y_speed > screen_height - ball.radius:
         y = screen_height - ball.radius
@@ -166,8 +164,30 @@ while is_running:
         y_speed *= -1
         print("studs uppe")
 
-    y += y_speed
 
+    x += x_speed
+    if x_speed > 0:
+        if x_speed + retardation <= 0:
+            x_speed = 0
+        else:
+            x_speed -= retardation
+    if x_speed < 0:
+        if x_speed + retardation >= 0:
+            x_speed = 0
+        else:
+            x_speed += retardation
+            
+    y += y_speed
+    if y_speed > 0:
+        if y_speed + retardation <= 0:
+            y_speed = 0
+        else:
+            y_speed -= retardation
+    if y_speed < 0:
+        if y_speed + retardation >= 0:
+            y_speed = 0
+        else:
+            y_speed += retardation
 
     # Textwindows
     cornertext_x = str(int(x))
