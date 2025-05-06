@@ -1,6 +1,12 @@
 Elias Berntsson Loggbok
 =======================
 
+2025-05-07
+Började repetera inför slutprov genom att skriva kod som t.ex. [practice1.py](/practice1.py).
+
+2025-05-06
+Gjorde annat
+
 2025-04-28
 Fixade textrutan i [mastergame.py](/mastergame.py) så att texten och rutan inte ändrar position och storlek när t.ex. x-koordinaten går från hundratal till tusental. La till retardation för bollen.
 

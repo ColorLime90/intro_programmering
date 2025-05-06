@@ -25,7 +25,7 @@ y_speed = 0
 
 speed_max = 100
 acceleration = 0.2  # +
-retardation = 0.1   # -
+retardation = 0.05   # -
 
 # Startposition
 x = 250
@@ -45,6 +45,10 @@ key_q = False
 
 ball = pygame.sprite.Sprite()
 ball.radius = 10
+
+enemy_balls = pygame.sprite.Group()
+enemy_ball_radius = 3
+timer_enemy_ball = 0
 
 antal_studs = 0
 cornertext = "x: xxxx   y: yyy"
@@ -126,8 +130,6 @@ while is_running:
         if y_speed > speed_max:
             y_speed = speed_max
         
-            
-
 
     if a_or_d:
         x_speed = 0
@@ -166,28 +168,42 @@ while is_running:
 
 
     x += x_speed
-    if x_speed > 0:
+    if x_speed > 0 and move_right == False:
         if x_speed + retardation <= 0:
             x_speed = 0
         else:
             x_speed -= retardation
-    if x_speed < 0:
+    if x_speed < 0 and move_left == False:
         if x_speed + retardation >= 0:
             x_speed = 0
         else:
             x_speed += retardation
             
     y += y_speed
-    if y_speed > 0:
+    if y_speed > 0 and move_down == False:
         if y_speed + retardation <= 0:
             y_speed = 0
         else:
             y_speed -= retardation
-    if y_speed < 0:
+    if y_speed < 0 and move_up == False:
         if y_speed + retardation >= 0:
             y_speed = 0
         else:
             y_speed += retardation
+
+    '''
+
+    timer_enemy_ball += 1
+
+    if timer_enemy_ball == 100:
+        timer_enemy_ball = 0
+        
+        enemy_ball_side = random.randint(1, 4)
+        if enemy_ball_side == 1:
+            enemy_ball = pygame.sprite.Sprite()
+            enemy_ball_radius
+
+    '''
 
     # Textwindows
     cornertext_x = str(int(x))
